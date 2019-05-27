@@ -3,31 +3,33 @@ from Common.get_data_json import get_config
 from Utils.utils import util
 
 def main():
-    path_out = 'D:\\Dev\\PyDevToolsSQL\\Files\\OUT\\query.sql'
-    archivo_out = open(path_out,'w+')
+    path_out = 'D:\\Dev\\PyDevToolsSQL\\Files\\OUT\\'   
     lista_paises = util.get_value_json(get_config.get_json('countries'))
     suffix = util.get_value_json(get_config.get_json('suffix'))
     sp = input("Ingrese el objeto de base de datos: ")
+    archivo_out = open("{}{}.sql".format(path_out,sp),'w+')
     # Read by row result sql 
     # ========================
-    # query_line = from_sql(sp)
-    # for pais in lista_paises:    
-    #     archivo_out.write('USE Belcorp{}_{} \n'.format(pais,suffix[0]))
-    #     archivo_out.write('GO \n')
-    #     for line in query_line:
-    #         archivo_out.write(line)
-    # archivo_out.write('GO \n\n')      
-    # archivo_out.close()
+    query_line = from_sql(sp)
+    for pais in lista_paises:    
+        archivo_out.write('USE Belcorp{}_{} \n'.format(pais,suffix[0]))
+        archivo_out.write('GO \n')
+        for line in query_line:
+            archivo_out.write(line)
+        archivo_out.write('\n')
+        archivo_out.write('GO \n\n')      
+    archivo_out.close()
 
     # Read by string result sql 
     # ========================
-    result =  from_sql_v2(sp)
-    for pais in lista_paises:    
-        archivo_out.write('USE Belcorp{}_{} \n'.format(pais,suffix[0]))
-        archivo_out.write('GO \n')       
-        archivo_out.write('{}\n'.format(result))
-        archivo_out.write('GO \n\n')      
-    archivo_out.close()
+    # result =  from_sql_v2(sp)
+    # for pais in lista_paises:    
+    #     archivo_out.write('USE Belcorp{}_{} \n'.format(pais,suffix[0]))
+    #     archivo_out.write('GO \n')       
+    #     archivo_out.write(result)
+    #     archivo_out.write('\n')
+    #     archivo_out.write('GO \n\n')      
+    # archivo_out.close()
 
 
 def from_sql(sp):
