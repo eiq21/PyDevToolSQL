@@ -4,10 +4,10 @@
         "path_in":"D:\\github\\ToolDevPython\\FILES\\IN"
     },
     "credentials_database":{
-        "server":"DEVPC\\SQL2014",
+        "server":"AWNTS74",
         "user":"sa",
-        "password":"Enrique21",
-        "database":"Northwind",
+        "password":"C0n$ult0r@$",
+        "database":"BelcorpPeru",
         "database_default":"master"
     },
     "countries":{
