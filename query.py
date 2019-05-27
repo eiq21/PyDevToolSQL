@@ -5,7 +5,8 @@ from Utils.utils import util
 path_out = 'D:\github\ToolDevPython\FILES\OUT\query.sql'
 lista_paises = util.get_value_json(get_config.get_json('countries'))
 suffix = util.get_value_json(get_config.get_json('suffix'))
-sql_access = conn_sql('DEVPC\SQL2014','sa','Enrique21','Northwind')
+str_cnx_sql = util.get_value_json(get_config.get_json('credentials_database'))
+sql_access = conn_sql(str_cnx_sql[0],str_cnx_sql[1],str_cnx_sql[2],str_cnx_sql[3])
 conn = sql_access.connect()
 query = 'sp_helptext GetCustomers_Pager'
 cursor = conn.cursor()
@@ -24,6 +25,7 @@ for pais in lista_paises:
         archivo_out.write(line)
     archivo_out.write('GO \n\n')     
 archivo_out.close()    
+
 
 
 
